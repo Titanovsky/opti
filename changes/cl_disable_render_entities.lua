@@ -1,14 +1,8 @@
-local CFG, C = AMB.Opti.Config, AMB.G.C 
-
-hook.Add( 'OnEntityCreated', 'AMB.Opti.DisableRenderPlayers', function( eObj )
-
-    if ( CFG.disable_render_players == false ) then return end
+hook.Add( 'OnEntityCreated', 'Ambi.Opti.DisableRenderObjects', function( eObj )
+    if ( Ambi.Opti.Config.disable_render_objects == false ) then return end
     if eObj:IsPlayer() then return end
 
     function eObj:RenderOverride()
-
-        if ( LocalPlayer():GetPos():Distance( self:GetPos() ) < CFG.disable_render_players_dist ) then self:DrawModel() end
-
+        if ( LocalPlayer():GetPos():Distance( self:GetPos() ) < Ambi.Opti.Config.disable_render_objects_dist ) then self:DrawModel() end
     end
-
 end )

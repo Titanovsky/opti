@@ -1,3 +1,6 @@
+--? UPD 05.10.2023: То, что ниже было написано и изучено в апреле-мае 2021 года. 
+--? Как я понимаю, я не до конца всё доделал и изучил
+
 -- Источник 1: https://csrulez.ru/topic4910.html
 -- Источник 2: https://c-s.net.ua/forum/topic87777.html#:~:text=cl_updaterate%20%2D%20c%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20%D1%81%D0%B5%D0%BA%D1%83%D0%BD%D0%B4%D1%83,%D0%BD%D0%B0%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%2C%20%D0%BE%20%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F%D1%85%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D1%85%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2%20.
 -- Источник 3: https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking:ru
@@ -18,16 +21,15 @@
 --    ISDN = 4000-6000
 --    xDSL, Cable, T1, etc = 6000-9999
 
--- cl_cmdrate - сколько обновлений в секунды будет отправлено от вашей машины серверу. 
+-- cl_cmdrate - сколько обновлений в секунды будет отправлено от вашей машины к серверу. 
 --Следовательно, от этого параметра будет зависеть то, как скоро сервер получит информацию о ваших действиях.
 -- модем = 25-35
 -- выделенка = 40-101
 
--- cl_update -  cколько обновлений в секунду посылать от сервера вашей машине. 
+-- cl_update -  cколько обновлений в секунду посылать от сервера к вашей машине. 
 -- Этот параметр влияет на то, насколько быстро вы получите серверные данные
 
-hook.Add( 'PostGamemodeLoaded', 'AMB.Opti.SetNetworkOptimizationConnection', function()
-
+hook.Add( 'PostGamemodeLoaded', 'Ambi.Opti.SetNetworkOptimizationConnection', function()
     -- Interpolation --------------------------------------------------------
 
     -- cl_interp вычисляют по 1 / cl_updaterate и указывают cl_interp_ratio 1
@@ -42,5 +44,4 @@ hook.Add( 'PostGamemodeLoaded', 'AMB.Opti.SetNetworkOptimizationConnection', fun
     RunConsoleCommand( 'snd_restart' )
 
     RunConsoleCommand( 'fov_desired', '90' )
-
 end )
